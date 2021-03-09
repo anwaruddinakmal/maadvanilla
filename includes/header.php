@@ -5,6 +5,31 @@ session_start();
 // Include config file
 require_once "includes/config.php";
 
+//check roles
+$sql = "SELECT user_id FROM roles WHERE user_id = ?";
+$admin = false;
+
+if ($stmt = mysqli_prepare($link, $sql)) {
+    // Bind variables to the prepared statement as parameters
+    mysqli_stmt_bind_param($stmt, "s", $param_id);
+
+    // Set parameters
+    $param_id = $_SESSION["id"];
+
+    // Attempt to execute the prepared statement
+    if (mysqli_stmt_execute($stmt)) {
+        // Store result
+        mysqli_stmt_store_result($stmt);
+        if(mysqli_stmt_num_rows($stmt) == 1){
+            $admin = true;
+        }else{
+            $admin = false;
+        }
+    } else {
+        echo "Oops! Something went wrong. Please try again later.";
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -66,7 +91,7 @@ require_once "includes/config.php";
 
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <?php
-                                if ($_SESSION['admin'] === true) {
+                                if ($admin === true) {
                                     echo '<a class="dropdown-item" href="admin/dashboard.php">Administration</a>';
                                 }
                                 ?>
