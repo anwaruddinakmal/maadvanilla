@@ -1,9 +1,9 @@
 <?php
-// Include config file
-require_once "../includes/config.php";
-
 // Initialize the session
 session_start();
+
+// Include config file
+require_once "../includes/config.php";
 
 // Check if the user is logged in, if not then redirect him to login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
@@ -11,19 +11,25 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit;
 } else {
     //check roles
-    $sql = "SELECT id FROM roles WHERE id = ?";
+    $sql = "SELECT user_id FROM roles WHERE user_id = ?";
+    $admin = false;
 
     if ($stmt = mysqli_prepare($link, $sql)) {
         // Bind variables to the prepared statement as parameters
         mysqli_stmt_bind_param($stmt, "s", $param_id);
 
         // Set parameters
-        $param_id = $_SESSION['id'];
+        $param_id = $_SESSION["id"];
 
         // Attempt to execute the prepared statement
         if (mysqli_stmt_execute($stmt)) {
             // Store result
             mysqli_stmt_store_result($stmt);
+            if(mysqli_stmt_num_rows($stmt) == 1){
+                $admin = true;
+            }else{
+                $admin = false;
+            }
         } else {
             echo "Oops! Something went wrong. Please try again later.";
         }
@@ -32,7 +38,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     // Close statement
     mysqli_stmt_close($stmt);
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -52,8 +57,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 <body>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="../img/logo.png" alt="" width="100px" height="auto">
+            <a class="navbar-brand" href="../index.php">
+                <img src="../img/logo.png" alt="" width="100px" height="auto">&nbsp;&nbsp;Malaysian Association of Aesthetic Dentistry
             </a>
             <div class="ml-auto">
                 <?php
@@ -67,7 +72,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <?php
-                            if(mysqli_stmt_num_rows($stmt) == 1){
+                            if($admin === true){
                                 echo '<a class="dropdown-item" href="dashboard.php">Administration</a>';
                             }
                             ?>
@@ -81,4 +86,3 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             </div>
         </div>
     </nav>
-    <?php echo mysqli_stmt_num_rows($stmt); ?> 

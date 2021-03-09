@@ -55,16 +55,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     mysqli_stmt_bind_result($stmt, $id, $email, $hashed_password);
                     if (mysqli_stmt_fetch($stmt)) {
                         if (password_verify($password, $hashed_password)) {
-                            // Password is correct, so start a new session
-                            session_start();
 
-                            // Store data in session variables
-                            $_SESSION["loggedin"] = true;
-                            $_SESSION["id"] = $id;
-                            $_SESSION["email"] = $email;
+                            // check if the user is admin
+                            $sql = "SELECT user_id FROM roles WHERE user_id = ?";
+                            if ($stmt = mysqli_prepare($link, $sql)) {
+                                mysqli_stmt_bind_param($stmt, "s", $param_id);
+                                $param_id = $id;
+                                if (mysqli_stmt_execute($stmt)) {
+                                    if (mysqli_stmt_num_rows($stmt) == 1) {
+                                        // Password is correct, so start a new session
+                                        session_start();
 
-                            // Redirect user to index page
-                            header("location: ../admin/index.php");
+                                        // Store data in session variables
+                                        $_SESSION["loggedin"] = true;
+                                        $_SESSION["id"] = $id;
+                                        $_SESSION["email"] = $email;
+                                        $_SESSION["admin"] = true;
+
+                                        // Redirect user to index page
+                                        header("location: ../admin/index.php");
+                                    } else {
+                                        // Password is correct, so start a new session
+                                        session_start();
+
+                                        // Store data in session variables
+                                        $_SESSION["loggedin"] = true;
+                                        $_SESSION["id"] = $id;
+                                        $_SESSION["email"] = $email;
+                                        $_SESSION["admin"] = false;
+
+                                        // Redirect user to index page
+                                        header("location: ../admin/index.php");
+                                    }
+                                }
+                            }
                         } else {
                             // Display an error message if password is not valid
                             $password_err = "The password you entered was not valid.";
