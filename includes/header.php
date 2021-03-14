@@ -5,28 +5,30 @@ session_start();
 // Include config file
 require_once "includes/config.php";
 
-//check roles
-$sql = "SELECT user_id FROM roles WHERE user_id = ?";
-$admin = false;
+if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+    //check roles
+    $sql = "SELECT user_id FROM roles WHERE user_id = ?";
+    $admin = false;
 
-if ($stmt = mysqli_prepare($link, $sql)) {
-    // Bind variables to the prepared statement as parameters
-    mysqli_stmt_bind_param($stmt, "s", $param_id);
+    if ($stmt = mysqli_prepare($link, $sql)) {
+        // Bind variables to the prepared statement as parameters
+        mysqli_stmt_bind_param($stmt, "s", $param_id);
 
-    // Set parameters
-    $param_id = $_SESSION["id"];
+        // Set parameters
+        $param_id = $_SESSION["id"];
 
-    // Attempt to execute the prepared statement
-    if (mysqli_stmt_execute($stmt)) {
-        // Store result
-        mysqli_stmt_store_result($stmt);
-        if(mysqli_stmt_num_rows($stmt) == 1){
-            $admin = true;
-        }else{
-            $admin = false;
+        // Attempt to execute the prepared statement
+        if (mysqli_stmt_execute($stmt)) {
+            // Store result
+            mysqli_stmt_store_result($stmt);
+            if (mysqli_stmt_num_rows($stmt) == 1) {
+                $admin = true;
+            } else {
+                $admin = false;
+            }
+        } else {
+            echo "Oops! Something went wrong. Please try again later.";
         }
-    } else {
-        echo "Oops! Something went wrong. Please try again later.";
     }
 }
 
@@ -69,10 +71,7 @@ if ($stmt = mysqli_prepare($link, $sql)) {
                         <a class="nav-link" href="#">Aesthetic Dentistry</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Post</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Event</a>
+                        <a class="nav-link" href="#">Activities</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contact</a>
@@ -102,8 +101,8 @@ if ($stmt = mysqli_prepare($link, $sql)) {
                     <?php
                     } else {
                     ?>
-                        <a href="auth/login.php" style="text-decoration: none;"><i class="fas fa-sign-in-alt"></i>&nbsp;&nbsp;Sign-in</a>
-                        <a href="auth/register.php" class="btn btn-outline-info ml-4">Register</a>
+                        <a href="auth/login.php" style="text-decoration: none;color:#666666"><i class="fas fa-sign-in-alt"></i>&nbsp;&nbsp;Sign-in</a>
+                        <a href="auth/register.php" class="btn btn-primary ml-4">Register</a>
                     <?php
                     }
                     ?>

@@ -28,8 +28,20 @@ if ($result = mysqli_query($link, $sql)) {
 }
 
 //get miss pay count
-$misscount = "NA";
+$misscount = "N/A";
 
+//get new member count
+$newcount = 0;
+$ynow = date("Y");
+$mnow = date("m");
+$sql = "SELECT id FROM user WHERE YEAR(created_at) = ". $ynow ." and MONTH(created_at) = ". $mnow ."";
+if ($result = mysqli_query($link, $sql)) {
+    $rowcount = mysqli_num_rows($result);
+    $newcount = $rowcount;
+    mysqli_free_result($result);
+}else{
+    $newcount = 0;
+}
 ?>
 <div class="container">
     <div class="row">
@@ -86,7 +98,7 @@ $misscount = "NA";
                     <div class="card border-0 shadow-sm" style="background-color:#343a40;color:#ffffff;">
                         <div class="card-body">
                             <a style="font-size:18px">New Member</a><br>
-                            <b style="font-size:70px;padding-top:-30px">100</b><br>
+                            <b style="font-size:70px;padding-top:-30px"><?php echo $newcount; ?></b><br>
                             <a href="#" style="color: #ffffff;opacity: 0.5;">Show me ></a>
                         </div>
                     </div>
