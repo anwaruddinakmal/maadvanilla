@@ -85,12 +85,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Attempt to execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
-                
+
                 echo '<script type="text/javascript">';
                 echo 'alert("Registration successful!. Please Log-in");';
                 echo 'window.location.href = "../admin/index.php";';
                 echo '</script>';
-                
+
                 // Redirect user to index page
                 // header("location: ../admin/index.php"); 
             } else {
@@ -120,8 +120,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <style type="text/css">
         body {
-            background: rgb(62, 173, 207);
-            background: linear-gradient(90deg, rgba(62, 173, 207, 1) 0%, rgba(171, 233, 205, 1) 100%);
+            background: rgb(40, 49, 59);
+            background: linear-gradient(90deg, rgba(40, 49, 59, 1) 0%, rgba(72, 84, 97, 1) 100%)
         }
 
         .content {
@@ -148,7 +148,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="mr-auto">
-            <a class="btn btn-info" href="../index.php"><i class="fas fa-chevron-left"></i>&nbsp;&nbsp;Back to homepage</a>
+            <a class="btn btn-dark" href="../index.php"><i class="fas fa-chevron-left"></i>&nbsp;&nbsp;Back to homepage</a>
         </div>
     </nav>
     <div class="content mx-auto">

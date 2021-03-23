@@ -61,20 +61,32 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <?php
+                    $curPageName = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_NAME"], "/") + 1);
+                    ?>
+                    <li class="nav-item <?php if ($curPageName == 'index.php') echo 'active';
+                                        else echo ''; ?>">
+                        <a class="nav-link" href="index.php">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">What We Do</a>
+                    <li class="nav-item dropdown <?php if ($curPageName == 'about.php') echo 'active';
+                                        else echo ''; ?>">
+                        <a class="nav-link" href="about.php">About Us</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Aesthetic Dentistry</a>
+                    <li class="nav-item <?php if ($curPageName == 'aestheticdentistry.php') echo 'active';
+                                        else echo ''; ?>">
+                        <a class="nav-link" href="aestheticdentistry.php">Aesthetic Dentistry</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Activities</a>
+                    <li class="nav-item <?php if ($curPageName == 'news.php') echo 'active';
+                                        else echo ''; ?>">
+                        <a class="nav-link" href="news.php">News</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
+                    <li class="nav-item <?php if ($curPageName == 'events.php') echo 'active';
+                                        else echo ''; ?>">
+                        <a class="nav-link" href="events.php">Events</a>
+                    </li>
+                    <li class="nav-item <?php if ($curPageName == 'contact.php') echo 'active';
+                                        else echo ''; ?>">
+                        <a class="nav-link" href="contact.php">Contact</a>
                     </li>
                 </ul>
                 <div class="ml-auto">
@@ -84,7 +96,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
                     if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
                     ?>
                         <div class="dropdown">
-                            <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="btn btn-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <?php echo $_SESSION['email']; ?>
                             </a>
 
@@ -102,7 +114,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
                     } else {
                     ?>
                         <a href="auth/login.php" style="text-decoration: none;color:#666666"><i class="fas fa-sign-in-alt"></i>&nbsp;&nbsp;Sign-in</a>
-                        <a href="auth/register.php" class="btn btn-primary ml-4">Register</a>
+                        <a href="auth/register.php" class="btn btn-dark ml-4">Register</a>
                     <?php
                     }
                     ?>

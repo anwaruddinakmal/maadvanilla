@@ -9,7 +9,7 @@ body {
 
 .navbar {
   background-color: #ffffff;
-  box-shadow: 0px 5px 0px #007bff;
+  box-shadow: 0px 5px 0px #343a40;
 }
 
 .nav-item {
@@ -18,11 +18,11 @@ body {
 }
 
 .hero {
-  background: rgb(62, 173, 207);
+  background: rgb(40, 49, 59);
   background: linear-gradient(
     90deg,
-    rgba(62, 173, 207, 1) 0%,
-    rgba(171, 233, 205, 1) 100%
+    rgba(40, 49, 59, 1) 0%,
+    rgba(72, 84, 97, 1) 100%
   );
   padding-top: 30px;
   padding-bottom: 30px;
@@ -43,8 +43,8 @@ body {
   border-radius: 15px !important;
 }
 
-.navbar-nav > .active > a {
-  color: #007bff !important;
+.navbar-nav > .active {
+  color: #343a40 !important;
   font-weight: bold;
 }
 
@@ -60,7 +60,7 @@ body {
 }
 
 .footer {
-  background-color: #007bff;
+  background-color: #343a40;
   color: #e7e7e7;
   padding-top: 30px;
   height: 80px;
@@ -114,10 +114,54 @@ body {
   text-shadow: 2px 2px 8px #2e2e2e;
 }
 
-.section3{
+.section3 {
   text-align: center;
 }
 
-.section4{
-  background-color: #F5F5F5;
+.section4 {
+  background-color: #f5f5f5;
+}
+
+.card-header {
+  background-color: #343a40 !important;
+  border-radius: 15px 15px 0px 0px !important;
+  color: white;
+}
+
+.section-intro {
+  background: rgb(40, 49, 59);
+  background: linear-gradient(
+    90deg,
+    rgba(40, 49, 59, 1) 0%,
+    rgba(72, 84, 97, 1) 100%
+  );
+  color: white;
+  padding-top: 65px;
+  padding-bottom: 50px;
+}
+
+.president-welcome {
+  background: rgb(40, 49, 59);
+  background: linear-gradient(
+    90deg,
+    rgba(40, 49, 59, 1) 0%,
+    rgba(72, 84, 97, 1) 100%
+  );
+  color: white;
+  padding: 5px;
+}
+
+.modal-header {
+  background: rgb(40, 49, 59);
+  background: linear-gradient(
+    90deg,
+    rgba(40, 49, 59, 1) 0%,
+    rgba(72, 84, 97, 1) 100%
+  );
+}
+
+.tumbnails{
+  height: 100px;
+  width: auto;
+  filter: brightness(70%);
 }
