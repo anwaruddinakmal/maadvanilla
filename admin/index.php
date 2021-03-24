@@ -35,7 +35,7 @@ if ($result->num_rows > 0) {
 ?>
 
 <div class="container">
-    <div class="card border-0 shadow-sm mt-4 mb-4 hero">
+    <div class="card border-0 shadow-sm mb-4 hero">
         <div class="card-body">
             <h3>Welcome
                 <b>
@@ -46,10 +46,10 @@ if ($result->num_rows > 0) {
     </div>
     <div class="row">
         <div class="col-sm-3">
-            <div class="card border-0 shadow-sm">
+            <div class="card border-0 shadow-sm bg-dark">
                 <div class="card-body">
                     <small class="text-muted">Navigation</small>
-                    <hr>
+                    <hr style="background-color: #666666;">
                     <div class="nav flex-column nav-pills mt-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                         <a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true"><i class="fas fa-user"></i>&nbsp;&nbsp;&nbsp;My Profile</a>
                         <a class="nav-link" id="v-pills-payment-tab" data-toggle="pill" href="#v-pills-payment" role="tab" aria-controls="v-pills-payment" aria-selected="false"><i class="fas fa-money-check-alt"></i>&nbsp;&nbsp;My Payment</a>

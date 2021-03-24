@@ -1,5 +1,28 @@
 <?php
 include('includes/header.php');
+
+//news
+$sql = "SELECT title FROM posts where category='news' order by timestamp desc limit 1";
+$result = $link->query($sql);
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $titlenews = $row["title"];
+    }
+}else{
+    $titlenews = 'No News Yet';
+}
+
+//events
+$sql = "SELECT title FROM posts where category='events' order by timestamp desc limit 1";
+$result = $link->query($sql);
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $titleevent = $row["title"];
+    }
+}else{
+    $titleevent = 'No Events Yet';
+}
+
 ?>
 
 <div class="hero-landing">
@@ -37,23 +60,23 @@ include('includes/header.php');
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                <a href="#" style="text-decoration: none;">
+                <a href="news.php" style="text-decoration: none;">
                     <div class="card mt-5 mb-5">
                         <div class="card-body news p-5">
                             <h4 class="txt-shadow">Latest <b style="color:yellow">News</b></h4>
                             <hr style="width: 70px;background-color:#ffffff;margin-left:0">
-                            <h4 class="txt-shadow">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit quos dolorum distinctio.</h4>
+                            <h4 class="txt-shadow"><?php echo $titlenews ?></h4>
                         </div>
                     </div>
                 </a>
             </div>
             <div class="col-sm-6">
-                <a href="#" style="text-decoration: none;">
+                <a href="events.php" style="text-decoration: none;">
                     <div class="card mt-5 mb-5">
                         <div class="card-body events p-5">
                             <h4 class="txt-shadow">Latest <b style="color:yellow">Events</b></h4>
                             <hr style="width: 70px;background-color:#ffffff;margin-left:0">
-                            <h4 class="txt-shadow">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit quos dolorum distinctio.</h4>
+                            <h4 class="txt-shadow"><?php echo $titleevent ?></h4>
                         </div>
                     </div>
                 </a>

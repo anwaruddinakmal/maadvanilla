@@ -165,3 +165,20 @@ body {
   width: auto;
   filter: brightness(70%);
 }
+
+.nav-link{
+  color: #ffffff;
+}
+
+.nav-link:hover{
+  color: #666666;
+}
+
+.nav-pills .nav-link.active{
+  background-color: #666666 !important;
+}
+
+.admin{
+  background-color: #e7e7e7;
+  padding-top: 120px;
+}

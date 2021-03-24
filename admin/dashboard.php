@@ -45,11 +45,11 @@ if ($result = mysqli_query($link, $sql)) {
 ?>
 <div class="container">
     <div class="row">
-        <div class="col-sm-3 mt-4">
+        <div class="col-sm-3">
             <?php include('sidenav.php'); ?>
         </div>
         <div class="col-sm-9">
-            <div class="card border-0 shadow-sm mt-4 mb-4 hero2">
+            <div class="card border-0 shadow-sm mb-4 hero2">
                 <div class="card-body">
                 </div>
             </div>
